@@ -1,16 +1,33 @@
-# React + Vite
+# Lista de Leitura
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplicação React simples para gerenciar uma lista de livros.
+Este projeto foi feito como conteudo avalitivo da disciplina de Desenvolvimento Web Backend do curso de Analise e Desenvolvimento
+de Sistemas da Univerisdade Tecnologica Federal do Paraná (UTFPR)
+Permite buscar livros usando a API do Google Livros, adicionar à lista de leitura, editar, excluir e marcar como lidos.
 
-Currently, two official plugins are available:
+## Tecnologias utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React  
+- Vite  
+- React Router  
+- Material UI  
+- Google Books API  
 
-## React Compiler
+## Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Buscar livros pelo título ou autor  
+- Adicionar livros à lista de leitura  
+- Editar informações de um livro  
+- Excluir livros da lista  
+- Marcar livros como lidos  
 
-## Expanding the ESLint configuration
+## Como instalar e executar o projeto
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+git clone https://github.com/edson-vieira19/lista_leitura_react
+cd lista_leitura_react
+npm install
+npm run dev
+
+
+
