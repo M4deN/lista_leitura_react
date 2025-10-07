@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";c
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuItem, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/logo_livro.png";
 
 function Header(){
-    const [anchorElNav, setAnchorElNav] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState(null);
 
-    const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
+  const handleMenuOpen = (event) => {
+    setAnchorEl(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
+  const handleMenuClose = () => {
+    setAnchorEl(null);
   };
+
+  const menuItems = ["Início", "Buscar", "Minha Lista", "Sobre"];
 
     return (
       <AppBar
@@ -51,6 +53,45 @@ function Header(){
               Lista de Leitura
             </Typography>
           </Box>
+          {/* Menus em telas grandes */}
+        <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
+          {menuItems.map((item) => (
+            <Button key={item} sx={{ color: "white", fontSize: "1rem" }}>
+              {item}
+            </Button>
+          ))}
+        </Box>
+
+        {/* Menu hamburguer em telas pequenas */}
+        <Box sx={{ display: { xs: "flex", md: "none" } }}>
+          <IconButton
+            size="large"
+            color="inherit"
+            onClick={handleMenuOpen}
+            aria-label="menu"
+          >
+            <MenuIcon />
+          </IconButton>
+          <Menu
+            anchorEl={anchorEl}
+            open={Boolean(anchorEl)}
+            onClose={handleMenuClose}
+            anchorOrigin={{
+              vertical: "bottom",
+              horizontal: "right",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "right",
+            }}
+          >
+            {menuItems.map((item) => (
+              <MenuItem key={item} onClick={handleMenuClose}>
+                {item}
+              </MenuItem>
+            ))}
+          </Menu>
+        </Box>
         </Toolbar>
       </AppBar>
     );
