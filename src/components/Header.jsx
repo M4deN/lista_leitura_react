@@ -1,4 +1,4 @@
-import React, { useState } from "react";c
+import React, { useState } from "react";
 import { AppBar, Box, Toolbar, IconButton, Typography, Menu, MenuItem, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/logo_livro.png";
