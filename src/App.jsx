@@ -1,37 +1,41 @@
-import React from "react";
-import './App.css'
+import React, { useState } from "react";
+import "./App.css";
 import { Box } from "@mui/material";
-import Header from './components/Header'
-import Footer from './components/Footer'
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import TesteApi from "./components/TesteApi";
 import Inicio from "./components/Inicio";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-
-
+import BuscarLivro from "./components/BuscarLivro";
+import MinhaLista from "./components/MinhaLista";
+import Sobre from "./components/Sobre";
 
 function App() {
+  const [paginaAtual, setPaginaAtual] = useState("inicio");
 
-  return(
-    
-    <Box
-      display="flex"
-      flexDirection="column"
-      minHeight="100vh"
-    >
-      <Header />
+  const renderPagina = () => {
+    switch (paginaAtual) {
+      case "inicio":
+        return <Inicio />;
+      case "buscar":
+        return <BuscarLivro />;
+      case "lista":
+        return <MinhaLista />;
+      case "sobre":
+        return <Sobre />;
+      default:
+        return <Inicio />;
+    }
+  };
+
+  return (
+    <Box display="flex" flexDirection="column" minHeight="100vh">
+      <Header onNavigate={setPaginaAtual} />
       <Box component="main" sx={{ flexGrow: 1 }}>
-        <Inicio></Inicio>
-     
+        {renderPagina()}
       </Box>
       <Footer />
     </Box>
-    
-  ) 
-    
-    
-
-    
-  
+  );
 }
 
-export default App
+export default App;

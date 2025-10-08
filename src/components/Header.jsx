@@ -12,7 +12,8 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../assets/logo_livro.png";
 
-function Header() {
+function Header({ onNavigate }) {
+
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuOpen = (event) => {
@@ -23,7 +24,12 @@ function Header() {
     setAnchorEl(null);
   };
 
-  const menuItems = ["Início", "Buscar", "Minha Lista", "Sobre"];
+  const menuItems = [
+    { label: "Início", key: "inicio" },
+    { label: "Buscar", key: "buscar" },
+    { label: "Minha Lista", key: "lista" },
+    { label: "Sobre", key: "sobre" },
+  ];
 
   return (
     <AppBar
@@ -64,8 +70,10 @@ function Header() {
         </Box>
         <Box sx={{ display: { xs: "none", md: "flex" }, gap: 2 }}>
           {menuItems.map((item) => (
-            <Button key={item} sx={{ color: "white", fontSize: "1rem" }}>
-              {item}
+            <Button key={item.key} sx={{ color: "white", fontSize: "1rem" }}
+            onClick={() => onNavigate(item.key)}
+            >
+              {item.label}
             </Button>
           ))}
         </Box>
@@ -93,8 +101,14 @@ function Header() {
             }}
           >
             {menuItems.map((item) => (
-              <MenuItem key={item} onClick={handleMenuClose}>
-                {item}
+              <MenuItem
+                  key={item.key}
+                  onClick={() => {
+                  onNavigate(item.key);
+                  handleMenuClose();
+                }}
+               >
+                {item.label}
               </MenuItem>
             ))}
           </Menu>
