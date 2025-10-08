@@ -3,6 +3,7 @@ import './App.css'
 import { Box } from "@mui/material";
 import Header from './components/Header'
 import Footer from './components/Footer'
+import TesteApi from "./components/TesteApi";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 function Home() {
@@ -29,6 +30,9 @@ function App() {
     >
       <Header />
       <Box component="main" sx={{ flexGrow: 1 }}>
+
+      <TesteApi></TesteApi>
+
      {/*    <MainContent /> */}
       </Box>
       <Footer />
