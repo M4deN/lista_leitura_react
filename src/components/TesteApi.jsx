@@ -15,7 +15,6 @@ export default function TesteApi() {
         );
         const dados = await resposta.json();
 
-        // pega o primeiro resultado
         const item = dados.items?.[0];
         if (item) {
           setLivro({
