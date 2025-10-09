@@ -8,6 +8,7 @@ import Inicio from "./components/Inicio";
 import BuscarLivro from "./components/BuscarLivro";
 import MinhaLista from "./components/MinhaLista";
 import Sobre from "./components/Sobre";
+import { ListaProvider } from "./contexts/ListaContext";
 
 function App() {
   const [paginaAtual, setPaginaAtual] = useState("inicio");
@@ -28,6 +29,8 @@ function App() {
   };
 
   return (
+
+    <ListaProvider>
     <Box display="flex" flexDirection="column" minHeight="100vh">
       <Header onNavigate={setPaginaAtual} />
       <Box component="main" sx={{ flexGrow: 1 }}>
@@ -35,6 +38,7 @@ function App() {
       </Box>
       <Footer />
     </Box>
+    </ListaProvider>
   );
 }
 
