@@ -96,7 +96,8 @@ const BuscarLivro = () => {
         sx={{ mt: 4, maxWidth: 900, mx: "auto" }}
       >
         {resultados.map((livro) => (
-          <Grid item key={livro.id} xs={12} sm={6} md={4}>
+          <Grid key={livro.id} size={{ xs: 12, sm: 6, md: 4 }}>
+            <Typography variant="h6">Resultados para: {busca}</Typography>
             <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
               {livro.capa && (
                 <CardMedia
