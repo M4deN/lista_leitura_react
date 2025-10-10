@@ -46,7 +46,7 @@ const BuscarLivro = () => {
           ano: item.volumeInfo.publishedDate
             ? item.volumeInfo.publishedDate.slice(0, 4)
             : "N/A",
-          capa: item.volumeInfo.imageLinks?.thumbnail || "",
+          capa: item.volumeInfo.imageLinks?.thumbnail || "https://placehold.co/128x180?text=sem+capa",
         }));
         setOpcoes(livros);
         setResultados(livros);
