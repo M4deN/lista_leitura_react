@@ -16,14 +16,14 @@ import AddIcon from "@mui/icons-material/Add";
 import { useLista } from "../contexts/ListaContext";
 
 const BuscarLivro = () => {
-  const [busca, setBusca] = useState("");
+  //const [busca, setBusca] = useState("");
   const [opcoes, setOpcoes] = useState([]);
   const [resultados, setResultados] = useState([]);
   const [loading, setLoading] = useState(false);
   const { dispatch } = useLista();
 
   const handleBuscar = async (valor) => {
-    setBusca(valor);
+    //setBusca(valor);
     if (valor.length < 3) return;
     setLoading(true);
 
@@ -34,7 +34,7 @@ const BuscarLivro = () => {
       const resposta = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(
           valor
-        )}+langRestrict:pt&maxResults=6&key=${apiKey}`
+        )}&langRestrict=pt&maxResults=6&key=${apiKey}`
       );
       const dados = await resposta.json();
 
@@ -77,12 +77,12 @@ const BuscarLivro = () => {
             label="Buscar livro pelo título"
             variant="outlined"
             sx={{ width: "100%", maxWidth: 500, mx: "auto" }}
-            InputProps={{
+            slotProps={{
               ...params.InputProps,
               endAdornment: (
                 <>
                   {loading ? <CircularProgress color="inherit" size={20} /> : null}
-                  {params.InputProps.endAdornment}
+                  {params.inputProps.endAdornment}
                 </>
               ),
             }}
@@ -97,7 +97,6 @@ const BuscarLivro = () => {
       >
         {resultados.map((livro) => (
           <Grid key={livro.id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <Typography variant="h6">Resultados para: {busca}</Typography>
             <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
               {livro.capa && (
                 <CardMedia
