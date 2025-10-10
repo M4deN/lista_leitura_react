@@ -34,7 +34,7 @@ const BuscarLivro = () => {
       const resposta = await fetch(
         `https://www.googleapis.com/books/v1/volumes?q=intitle:${encodeURIComponent(
           valor
-        )}+langRestrict:pt&maxResults=5&key=${apiKey}`
+        )}+langRestrict:pt&maxResults=6&key=${apiKey}`
       );
       const dados = await resposta.json();
 

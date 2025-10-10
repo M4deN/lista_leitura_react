@@ -16,7 +16,7 @@ function App() {
   const renderPagina = () => {
     switch (paginaAtual) {
       case "inicio":
-        return <Inicio />;
+        return <Inicio onNavigate={setPaginaAtual} />;
       case "buscar":
         return <BuscarLivro />;
       case "lista":
@@ -24,7 +24,7 @@ function App() {
       case "sobre":
         return <Sobre />;
       default:
-        return <Inicio />;
+        return <Inicio onNavigate={setPaginaAtual} />;
     }
   };
 
