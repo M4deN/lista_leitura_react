@@ -25,7 +25,7 @@ export default function Sobre() {
           }}
         >
           <Typography
-            variant="h3"
+            variant="h4"
             component="h1"
             gutterBottom
             sx={{
