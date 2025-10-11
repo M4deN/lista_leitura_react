@@ -36,6 +36,9 @@ const BuscarLivro = () => {
           valor
         )}&langRestrict=pt&maxResults=6&key=${apiKey}`
       );
+
+
+
       const dados = await resposta.json();
 
       if (dados.items) {
@@ -69,7 +72,16 @@ const BuscarLivro = () => {
     <Box sx={{ mt: 8, textAlign: "center", px: 2 }}>
       <Autocomplete
         freeSolo
-        options={opcoes.map((livro) => livro.titulo)}
+        options={opcoes}
+        getOptionLabel={(option) =>
+          typeof option === "string" ? option : option.titulo
+        }
+        renderOption={(props, option) => (
+          <li {...props} key={option.id}>
+            {option.titulo}
+          </li>
+        )}
+        //options={opcoes.map((livro) => livro.titulo)}
         onInputChange={(e, valor) => handleBuscar(valor)}
         renderInput={(params) => (
           <TextField
@@ -81,7 +93,9 @@ const BuscarLivro = () => {
               ...params.InputProps,
               endAdornment: (
                 <>
-                  {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                  {loading ? (
+                    <CircularProgress color="inherit" size={20} />
+                  ) : null}
                   {params.inputProps.endAdornment}
                 </>
               ),
@@ -95,9 +109,11 @@ const BuscarLivro = () => {
         justifyContent="center"
         sx={{ mt: 4, maxWidth: 900, mx: "auto" }}
       >
-        {resultados.map((livro) => (
-          <Grid key={livro.id} size={{ xs: 12, sm: 6, md: 4 }}>
-            <Card sx={{ display: "flex", flexDirection: "column", height: "100%" }}>
+        {resultados.map((livro, index) => (
+          <Grid key={`${livro.id}-${index}`} size={{ xs: 12, sm: 6, md: 4 }}>
+            <Card
+              sx={{ display: "flex", flexDirection: "column", height: "100%" }}
+            >
               {livro.capa && (
                 <CardMedia
                   component="img"
@@ -117,7 +133,10 @@ const BuscarLivro = () => {
               </CardContent>
               <Box sx={{ textAlign: "right", p: 1 }}>
                 <Tooltip title="Adicionar à lista de leitura">
-                  <IconButton onClick={() => adicionarLivro(livro)} color="primary">
+                  <IconButton
+                    onClick={() => adicionarLivro(livro)}
+                    color="primary"
+                  >
                     <AddIcon />
                   </IconButton>
                 </Tooltip>
