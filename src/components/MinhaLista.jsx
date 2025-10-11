@@ -18,7 +18,7 @@ const MinhaLista = () => {
   return (
     <Box sx={{ mt: 6, px: 2, maxWidth: 700, mx: "auto" }}>
       <Typography variant="h5" mb={2}>
-        Minha Lista de Leitura
+        Minha Lista de Leitura:
       </Typography>
 
       <List>
