@@ -10,6 +10,8 @@ import {
   IconButton,
   Tooltip,
   Grid,
+  Snackbar,
+  Alert,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useLista } from "../contexts/ListaContext";
@@ -18,6 +20,8 @@ const BuscarLivro = () => {
   //const [busca, setBusca] = useState("");
   const [opcoes, setOpcoes] = useState([]);
   const [resultados, setResultados] = useState([]);
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const { dispatch } = useLista();
 
   const handleBuscar = async (valor) => {
@@ -62,6 +66,20 @@ const BuscarLivro = () => {
 
   const adicionarLivro = (livro) => {
     dispatch({ type: "ADICIONAR", payload: livro });
+  };
+
+  const handleAdicionar = (livro) => {
+    adicionarLivro(livro);
+    const shortTitle = 
+      livro.titulo.length > 30
+      ? livro.titulo.slice(0, 30).trim() + "..."
+      : livro.titulo;
+    setSnackbarMessage(`O Livro "${shortTitle}" foi adicionado à lista!`);
+    setOpenSnackbar(true);
+  };
+
+  const handleCloseSnackbar = () => {
+    setOpenSnackbar(false);
   };
 
   return (
@@ -119,7 +137,7 @@ const BuscarLivro = () => {
               <Box sx={{ textAlign: "right", p: 1 }}>
                 <Tooltip title="Adicionar à lista de leitura">
                   <IconButton
-                    onClick={() => adicionarLivro(livro)}
+                    onClick={() => handleAdicionar(livro)}
                     color="primary"
                   >
                     <AddIcon />
@@ -130,6 +148,20 @@ const BuscarLivro = () => {
           </Grid>
         ))}
       </Grid>
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={2500}
+        onClose={handleCloseSnackbar}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity="success"
+          sx={{ width: "100%" }}
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 };
