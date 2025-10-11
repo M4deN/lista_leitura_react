@@ -10,7 +10,6 @@ import {
   IconButton,
   Tooltip,
   Grid,
-  CircularProgress,
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import { useLista } from "../contexts/ListaContext";
@@ -19,13 +18,14 @@ const BuscarLivro = () => {
   //const [busca, setBusca] = useState("");
   const [opcoes, setOpcoes] = useState([]);
   const [resultados, setResultados] = useState([]);
-  const [loading, setLoading] = useState(false);
   const { dispatch } = useLista();
 
   const handleBuscar = async (valor) => {
+
     //setBusca(valor);
-    if (valor.length < 3) return;
-    setLoading(true);
+    if (valor.length < 3){
+      return;
+    } 
 
     try {
 
@@ -36,8 +36,6 @@ const BuscarLivro = () => {
           valor
         )}&langRestrict=pt&maxResults=6&key=${apiKey}`
       );
-
-
 
       const dados = await resposta.json();
 
@@ -59,8 +57,6 @@ const BuscarLivro = () => {
       }
     } catch (error) {
       console.error("Erro ao buscar livros:", error);
-    } finally {
-      setLoading(false);
     }
   };
 
@@ -89,17 +85,6 @@ const BuscarLivro = () => {
             label="Buscar livro pelo título"
             variant="outlined"
             sx={{ width: "100%", maxWidth: 500, mx: "auto" }}
-            slotProps={{
-              ...params.InputProps,
-              endAdornment: (
-                <>
-                  {loading ? (
-                    <CircularProgress color="inherit" size={20} />
-                  ) : null}
-                  {params.inputProps.endAdornment}
-                </>
-              ),
-            }}
           />
         )}
       />
