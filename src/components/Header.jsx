@@ -52,6 +52,7 @@ function Header({ onNavigate }) {
               marginRight: 32,
               borderRadius: 8,
             }}
+            onClick={()=>onNavigate("Inicio")}
           />
           <Typography
             variant="h4"
@@ -64,6 +65,7 @@ function Header({ onNavigate }) {
               position: "relative",
               top: 2,
             }}
+            onClick={()=>onNavigate("inicio")}
           >
             Lista de Leitura
           </Typography>

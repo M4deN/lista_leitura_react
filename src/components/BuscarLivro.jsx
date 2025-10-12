@@ -12,8 +12,10 @@ import {
   Grid,
   Snackbar,
   Alert,
+  InputAdornment
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import SearchIcon from "@mui/icons-material/Search";
 import { useLista } from "../contexts/ListaContext";
 
 const BuscarLivro = () => {
@@ -95,14 +97,35 @@ const BuscarLivro = () => {
             {option.titulo}
           </li>
         )}
-        //options={opcoes.map((livro) => livro.titulo)}
         onInputChange={(e, valor) => handleBuscar(valor)}
         renderInput={(params) => (
           <TextField
             {...params}
             label="Buscar livro pelo título"
             variant="outlined"
-            sx={{ width: "100%", maxWidth: 500, mx: "auto" }}
+            slotProps={{
+            input: {
+              ...params.InputProps,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    aria-label="ícone de busca"
+                    edge="end"
+                  >
+                    <SearchIcon />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            },
+          }}
+            sx={{
+              width: "100%",
+              maxWidth: 550,
+              mx: "auto",
+              bgcolor: "white",
+              borderRadius: 2,
+              boxShadow: 2,
+            }}
           />
         )}
       />
