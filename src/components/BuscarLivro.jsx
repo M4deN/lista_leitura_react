@@ -15,6 +15,8 @@ import {
   InputAdornment
 } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import AssignmentAddIcon from '@mui/icons-material/AssignmentAdd';
 import SearchIcon from "@mui/icons-material/Search";
 import { useLista } from "../contexts/ListaContext";
 
@@ -103,7 +105,7 @@ const BuscarLivro = () => {
             {...params}
             label="Buscar livro pelo título"
             variant="outlined"
-            slotProps={{
+            /* slotProps={{
             input: {
               ...params.InputProps,
               endAdornment: (
@@ -117,7 +119,7 @@ const BuscarLivro = () => {
                 </InputAdornment>
               ),
             },
-          }}
+          }} */
             sx={{
               width: "100%",
               maxWidth: 550,
@@ -131,9 +133,9 @@ const BuscarLivro = () => {
       />
       <Grid
         container
-        spacing={2}
+        spacing={4}
         justifyContent="center"
-        sx={{ mt: 4, maxWidth: 900, mx: "auto" }}
+        sx={{ mt: 4, mb: 6, maxWidth: 900, mx: "auto" }}
       >
         {resultados.map((livro, index) => (
           <Grid key={`${livro.id}-${index}`} size={{ xs: 12, sm: 6, md: 4 }}>
@@ -148,7 +150,7 @@ const BuscarLivro = () => {
                   sx={{ height: 180, objectFit: "cover" }}
                 />
               )}
-              <CardContent sx={{ flexGrow: 1 }}>
+              <CardContent sx={{ flexGrow: 1, pb: 1 }}>
                 <Typography variant="subtitle1" fontWeight="bold">
                   {livro.titulo}
                 </Typography>
@@ -157,13 +159,14 @@ const BuscarLivro = () => {
                   {livro.ano}
                 </Typography>
               </CardContent>
-              <Box sx={{ textAlign: "right", p: 1 }}>
+              <Box sx={{ textAlign: "right", px: 1, pb: 1, pt: 0 }}>
                 <Tooltip title="Adicionar à lista de leitura">
                   <IconButton
                     onClick={() => handleAdicionar(livro)}
-                    color="primary"
+                    color= "primary"
+                    sx={{pt: 0 }}
                   >
-                    <AddIcon />
+                    <PlaylistAddIcon fontSize="large" />
                   </IconButton>
                 </Tooltip>
               </Box>
