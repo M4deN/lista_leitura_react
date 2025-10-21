@@ -1,4 +1,5 @@
 name: CI/CD for React App
+
 on:
   push:
     branches:
@@ -6,24 +7,24 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest  
+    runs-on: ubuntu-latest 
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2  
 
-      - name: Set up Node.js
+      - name: Set up Node.js (versão 20.x)
         uses: actions/setup-node@v3
         with:
-          node-version: '16'  
+          node-version: '20'  
 
       - name: Install dependencies
         run: |
-          npm install  # Instala as dependências do projeto
+          npm install  
 
       - name: Build the React app
         run: |
-          npm run build  # Comando para gerar a versão de produção do seu app React
+          npm run build 
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3  
