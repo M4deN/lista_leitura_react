@@ -1,19 +1,15 @@
-name: CI/CD Pipeline
-
+name: CI/CD for React App
 on:
   push:
     branches:
       - main  
-  pull_request:
-    branches:
-      - main 
 
 jobs:
   build:
     runs-on: ubuntu-latest  
 
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v2  
 
       - name: Set up Node.js
@@ -23,32 +19,14 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install  
+          npm install  # Instala as dependências do projeto
 
-  deploy:
-    runs-on: ubuntu-latest  
-
-    needs: build 
-
-    steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2  
-
-      - name: Set up SSH Agent with Custom Private Key
+      - name: Build the React app
         run: |
-          mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan -H 192.168.1.10 >> ~/.ssh/known_hosts  # Substitua pelo IP correto
-        env:
-          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          npm run build  # Comando para gerar a versão de produção do seu app React
 
-      - name: Deploy to Server
-        run: |
-          ssh -o StrictHostKeyChecking=no user@192.168.1.10 <<EOF  # Substitua pelo IP correto
-          cd /path/to/your/project
-          git pull origin main
-          npm install
-          npm run build
-          pm2 restart app  
-          EOF
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3  
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}  
+          publish_dir: ./build  
