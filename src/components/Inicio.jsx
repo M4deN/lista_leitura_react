@@ -43,7 +43,7 @@ function Inicio({ onNavigate }) {
             sx={{ mb: 4, mt: 2, lineHeight: 1.6 }}
           >
             Organize seus livros favoritos, descubra novas leituras e mantenha
-            tudo em um só lugar. Clique abaixo para começar!
+            tudo em um só lugar aproveite nosso APP. Clique abaixo para começar!
           </Typography>
 
           <Button
