@@ -28,7 +28,7 @@ jobs:
       
       - name: Build the React app
         run: |
-          npm run build  # Isso cria os arquivos otimizados na pasta ./dist
+          npm run dev 
 
     
       - name: Deploy to GitHub Pages
