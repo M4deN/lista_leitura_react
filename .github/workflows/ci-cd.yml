@@ -28,7 +28,6 @@ jobs:
       
       - name: Build the React app
         run: |
-          npm run dev 
           npm run build
 
     
